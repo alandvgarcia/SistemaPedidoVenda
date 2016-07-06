@@ -1,0 +1,42 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="titulo">
+	    Cadastro de cliente
+	</ui:define>
+	<ui:define name="corpo">
+	<h1>Novo cliente</h1>
+	<p:toolbar style="margin-top: 30px;">
+		<p:toolbarGroup>
+		  <p:button value="Novo" outcome="/cliente/CadastroCliente"/>
+		  <p:commandButton value="Salvar"/>
+		</p:toolbarGroup>
+		<p:toolbarGroup align="right">
+		  <p:button value="Pesquisar"/>
+		</p:toolbarGroup>
+	</p:toolbar>
+	
+	<p:panelGrid columns="2" id="painelCadastro" style="width: 100%; margin-top: 30px" columnClasses="rotulo, coluna">
+		<p:outputLabel value="Nome" for="inputNome"/>
+		<p:inputText id="inputNome" size="60" maxlength="80"/>
+		<p:outputLabel value="Tipo" for="selectTipo"/>
+		<p:selectOneRadio id="selectTipo">
+			<f:selectItem itemLabel="Física" itemValue="fisica"/>
+			<f:selectItem itemLabel="Jurídica" itemValue="juridica"/>
+		</p:selectOneRadio>
+		<p:outputLabel value="CNPJ" for="inputCNPJ"/>
+		<p:inputMask mask="99.999.999/9999-99" id="inputCNPJ" />
+		<p:outputLabel value="E-mail" for="inputEmail"/>
+		<p:inputText id="inputEmail" size="40" maxlength="60"/>
+	
+	</p:panelGrid>
+	
+	
+	</ui:define>
+	
+</ui:composition>
+

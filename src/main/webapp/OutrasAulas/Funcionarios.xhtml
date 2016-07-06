@@ -1,0 +1,45 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="titulo">
+	    Funcionarios
+	</ui:define>
+	
+	<ui:define name="corpo">
+	  <h:form id="frm">
+	  	<p:dataTable value="#{funcionarioBean.funcionarios}" var="funcionario"
+	  	sortBy="#{funcionario.matricula}" sortOrder="descending" paginator="true" rows="10"
+	  	paginatorPosition="bottom" rowsPerPageTemplate="10,20,30" paginatorAlwaysVisible="false">
+	  		<p:column headerText="Matrícula" style="text-align: center" width="90"
+	  		sortBy="#{funcionario.matricula}">
+	  			<h:outputText value="#{funcionario.matricula}"/>
+	  		</p:column>
+	  		<p:column headerText="Nome" sortBy="#{funcionario.nome}">
+	  			<h:outputText value="#{funcionario.nome}"/>
+	  		</p:column>
+	  		<p:column headerText="Data admissão" width="180" style="text-align: center"
+	  		sortBy="#{funcionario.dataAdmissao}">
+	  			<h:outputText value="#{funcionario.dataAdmissao}">
+	  			    <f:convertDateTime pattern="dd/MM/yyyy"/>
+	  			</h:outputText>
+	  			
+	  		</p:column>
+	  		<p:column headerText="Salário" width="140" style="text-align: right"
+	  		sortBy="#{funcionario.salario}">
+	  			<h:outputText value="#{funcionario.salario}">
+	  				<f:convertNumber type="currency" locale="pt_BR"/>
+	  			</h:outputText>
+	  		</p:column>
+	  	
+	  	</p:dataTable>
+	  </h:form>
+	</ui:define>
+
+</ui:composition>
+
+
+

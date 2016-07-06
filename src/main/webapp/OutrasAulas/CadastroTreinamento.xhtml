@@ -1,0 +1,131 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="titulo">
+	    Cadastro treinamento
+	</ui:define>
+	
+	<ui:define name="corpo">
+	  <p:messages />
+	  	  
+	  <h:form id="frmCadastro">
+	  
+	
+	  <h1>Cadastro de contrato de treinamento</h1>
+	  <p:separator />
+	  
+	  <p:tabView style="margin-top: 20px">
+	  	<p:tab title="Dados principais">
+	  		<h:panelGrid columns="2">
+	  		
+	  			<p:outputLabel value="Razão social" for="inputRazaoSocial"/>
+	  			<p:inputText id="inputRazaoSocial" 
+	  			value="#{contratoTreinamento.razaoSocial}" required="true"/>
+	  			<p:outputLabel value="CNPJ" for="inputCNPJ"/>
+	  			<p:inputMask mask="99.999.999/9999-99" id="inputCNPJ" 
+	  			value="#{contratoTreinamento.CNPJ}" required="true"/>
+	  			<p:outputLabel value="Cidade do contrato" for="inputCidade"/>
+	  			<p:inputText id="inputCidade" value="#{contratoTreinamento.cidadeContrato}"
+	  			required="true"/>
+	  			
+	  			<p:outputLabel value="Modalidade" for="selectOneRadioModalidade"/>
+	  			<p:selectOneRadio id="selectOneRadioModalidade" 
+	  			value="#{contratoTreinamento.modalidadeCurso}" required="true">
+	  				<f:selectItem itemLabel="EAD" itemValue="EAD"/>
+	  				<f:selectItem itemLabel="Presencial" itemValue="Presencial"/>
+	  			</p:selectOneRadio>
+	  			
+	  		</h:panelGrid>
+	  	</p:tab>
+	  	<p:tab title="Contrato">
+	  		<h:panelGrid columns="2">
+	  			 <p:outputLabel for="inputDataContrato" value="Data do contrato" />
+       			 <p:calendar id="inputDataContrato"  pattern="dd-MM-yyyy" mask="true" 
+       			 size="20"  required="true" value="#{contratoTreinamento.dataContrato}"/>
+       			 <p:outputLabel for="inputValorContrato" value="Valor do contrato" />
+       			 
+       			 
+       			 <p:inputText styleClass="moeda" id="inputValorContrato"
+       			 size="20"  value="#{contratoTreinamento.valorContrato}" >
+       			 	<f:convertNumber type="currency" locale="pt_BR"/>
+       			 </p:inputText>
+       			 
+       			 
+       			 <p:outputLabel value="Método de pagamento" for="selectMetodoPagamento"/>
+       			 <p:selectOneMenu  id="selectMetodoPagamento" value="#{contratoTreinamento.metodoPagamento}">
+       			 	<f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/>
+       			 	<f:selectItem itemLabel="Boleto" itemValue="Boleto"/>
+       			 	<f:selectItem itemLabel="Cartão Crédito" itemValue="CartaoCredito"/>
+       			 	<f:selectItem itemLabel="Débito Online" itemValue="DebitoOnline"/>
+       			 </p:selectOneMenu>
+       			 
+       			 
+	  		</h:panelGrid>
+	  	</p:tab>
+	  	<p:tab title="Cursos">
+	  		
+	  		 	 <p:selectManyCheckbox  layout="grid" columns="1" value="#{contratoTreinamento.cursos}">
+	  		 	 	<f:selectItem itemLabel="Fundamentos Java e Orientação a Objetos" itemValue="Fundamentos Java"/>
+	  		 	 	<f:selectItem itemLabel="Desenvolvimento WEB com JSF 2" itemValue="JSF2"/>
+	  		 	 	<f:selectItem itemLabel="Persistência de Dados com JPA2 e Hibernate" itemValue="JPA2 e Hibernate"/>
+	  		 	 	<f:selectItem itemLabel="Gerenciamento Ágil de Projetos com Scrum" itemValue="Scrum"/>
+	  		 	 </p:selectManyCheckbox>	 
+	  
+	  	</p:tab>	  	  	  	  
+	  </p:tabView>
+	  
+	  <p:commandButton value="Cadastrar" style="margin-top: 20px"
+	  actionListener="#{contratoTreinamento.cadastrarContrato}" ajax="false" update="@frm-dataTable"/>
+	</h:form>
+	
+	
+	<h:form id="frm-dataTable">
+		<p:dataTable var="contrato" value="#{contratoTreinamento.contratosCadastrados}">
+			<p:column headerText="Razão Social">
+				<h:outputText value="#{contrato.razaoSocial}"/>
+			</p:column>
+			<p:column headerText="CNPJ">
+				<h:outputText value="#{contrato.CNPJ}"/>
+			</p:column>
+			<p:column headerText="Cidade">
+				<h:outputText value="#{contrato.cidadeContrato}"/>
+			</p:column>
+			<p:column headerText="Modalidade">
+				<h:outputText value="#{contrato.modalidadeCurso}"/>
+			</p:column>
+			<p:column headerText="Método Pagamento">
+				<h:outputText value="#{contrato.metodoPagamento}"/>
+			</p:column>
+			<p:column headerText="Data Contrato">
+				<h:outputText value="#{contrato.dataContrato}">
+					 <f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Valor Contrato">
+				
+					<h:outputText value="#{contrato.valorContrato}">
+						<f:convertNumber type="currency" locale="pt_BR"/>
+					</h:outputText>
+			
+			</p:column>
+			<p:column headerText="Cursos">
+				
+					<h:outputText value="#{contrato.cursos}"/>
+						
+			</p:column>
+			
+		
+		</p:dataTable>
+	
+	</h:form>
+	  
+	</ui:define>
+
+</ui:composition>
+
+
+

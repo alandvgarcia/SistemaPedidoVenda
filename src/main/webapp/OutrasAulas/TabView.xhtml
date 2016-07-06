@@ -1,0 +1,55 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">TabView Exemplo</ui:define>
+	
+	<ui:define name="corpo">
+		<h:form id="frm">
+			<p:tabView effect="fade" effectDuration="fast" dynamic="true" cache="false">
+				<p:tab title="Dados Pessoais">
+					<h:panelGrid columns="2" cellpadding="4">
+							<p:outputLabel value="Nome" for="inputNome"/>
+							<p:inputText id="inputNome" size="60" maxlength="80"/>
+							<p:outputLabel value="Tipo" for="selectTipo"/>
+							<p:selectOneRadio id="selectTipo">
+								<f:selectItem itemLabel="Física" itemValue="fisica"/>
+								<f:selectItem itemLabel="Jurídica" itemValue="juridica"/>
+							</p:selectOneRadio>
+							<p:outputLabel value="CNPJ" for="inputCNPJ"/>
+							<p:inputMask mask="99.999.999/9999-99" id="inputCNPJ" />
+							<p:outputLabel value="E-mail" for="inputEmail"/>
+							<p:inputText id="inputEmail" size="40" maxlength="60"/>
+						
+					</h:panelGrid>
+				</p:tab>
+				
+				<p:tab title="Endereço">
+						<h:panelGrid columns="2" cellpadding="4">
+							<p:outputLabel value="Endereço" for="inputEndereco"/>
+							<p:inputText id="inputEndereco" size="60" maxlength="80"/>
+							<p:outputLabel value="Numero" for="inputNumero"/>
+							<p:inputText id="inputNumero" size="20" maxlength="10"/>
+							<p:outputLabel value="Bairro" for="inputBairro"/>
+							<p:inputText id="inputBairro" size="40" maxlength="60"/>
+							<p:outputLabel value="Cidade" for="inputCidade"/>
+							<p:inputText id="inputCidade" size="40" maxlength="60"/>
+						
+					</h:panelGrid>
+					
+					<h:outputText value="#{dataBean.dataAtual}">
+						<f:convertDateTime pattern="HH:mm:ss"/>
+					</h:outputText>
+					
+				</p:tab>
+			
+			</p:tabView>
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>
+

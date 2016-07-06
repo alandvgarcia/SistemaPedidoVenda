@@ -1,0 +1,39 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:define name="titulo">
+		Cadastro de usuário
+	</ui:define>	
+	
+	<ui:define name="corpo">
+		<h1>Novo usuário</h1>
+		<p:toolbar style="margin-top: 30px">
+			<p:toolbarGroup>
+				<p:button value="Novo" outcome="/usuario/CadastroUsuario"/>
+				<p:commandButton value="Salvar"/>
+			</p:toolbarGroup>
+			<p:toolbarGroup align="right">
+				<p:button value="Pesquisar"/>
+			</p:toolbarGroup>
+		</p:toolbar>
+		
+		<p:panelGrid columns="2" columnClasses="rotulo, coluna" style="width: 100%; margin-top: 30px">
+			<p:outputLabel value="Nome" for="inputNome"/>
+			<p:inputText id="inputNome" size="60" maxlength="80"/>
+			<p:outputLabel value="E-mail" for="inputEmail"/>
+			<p:inputText id="inputEmail" size="60" maxlength="60"/>
+			<p:outputLabel value="Senha" for="inputSenha"/>
+			<p:password id="inputSenha"/>
+			<p:outputLabel value="Confirme a senha" for="inputConfirmeSenha"/>
+			<p:password id="inputConfirmeSenha" match="inputSenha"/>
+		</p:panelGrid>
+	</ui:define>
+	
+
+
+
+</ui:composition>
